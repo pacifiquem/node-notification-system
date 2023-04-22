@@ -1,41 +1,60 @@
-//set events
-const body = document.getElementsByTagName('body')[0];
-body.setAttribute('onload', 'setEvents()');
+var board = document.getElementById("board");
+var cells = board.getElementsByClassName("cell");
+var currentPlayer = "X";
 
-//global variables decralation
-const button = document.querySelectorAll('button');
-const line = document.getElementsByClassName('line');
-let winnerChecker = new Array(3); // array for checking winner
-let i, j;
+// Reset the game
+function reset() {
+  for (var i = 0; i < cells.length; i++) {
+    cells[i].textContent = "";
+  }
+  currentPlayer = "X";
+}
 
-//function for setting events
-const setEvents = () => {
-    for(i=0; i<button.length; i++) {
-        button[i].setAttribute('onclick', 'markSelected_user(this)');
+// Handle a click on a cell
+function handleClick(event) {
+  var cell = event.target;
+  if (cell.textContent !== "") {
+    return;
+  }
+  cell.textContent = currentPlayer;
+  currentPlayer = currentPlayer === "X" ? "O" : "X";
+  checkWinner();
+}
+
+// Check for a winner
+function checkWinner() {
+  var winner = null;
+  // Check for a row winner
+  for (var i = 0; i < 3; i++) {
+    if (cells[i * 3].textContent === cells[i * 3 + 1].textContent === cells[i * 3 + 2].textContent && cells[i * 3].textContent !== "") {
+      winner = cells[i * 3].textContent;
     }
-}
+  }
 
-//function for marking user selected square
-const markSelected_user = (element) => {
-    element.setAttribute('class', 'selected-user');
-    setTimeout(markSelected_device, 800);
-}
-
-//function for marking device selected square
-const markSelected_device = () => {
-    button[5].setAttribute('class', 'selected-device');
-    setTimeout(checkWinnerHorizontally, 100)
-}
-
-//function for checking winner horizontally
-
-const checkWinnerHorizontally = () => {
-    
-    for(i=0; i<line.length; i++) {
-
-        let square_line = line[i].childNodes;
-        for(j=0; j<square_line.length; i++) {
-            console.log(square_line[j]);
-        }
+  // Check for a column winner
+  for (var i = 0; i < 3; i++) {
+    if (cells[i].textContent === cells[i + 3].textContent === cells[i + 6].textContent && cells[i].textContent !== "") {
+      winner = cells[i].textContent;
     }
+  }
+
+  // Check for a diagonal winner
+  if (cells[0].textContent === cells[4].textContent === cells[8].textContent && cells[0].textContent !== "") {
+    winner = cells[0].textContent;
+  }
+
+  if (cells[2].textContent === cells[4].textContent === cells[6].textContent && cells[2].textContent !== "") {
+    winner = cells[2].textContent;
+  }
+
+  // If there is a winner, announce it
+  if (winner !== null) {
+    alert("The winner is " + winner);
+    reset();
+  }
+}
+
+// Initialize the game
+for (var i = 0; i < cells.length; i++) {
+  cells[i].addEventListener("click", handleClick);
 }
