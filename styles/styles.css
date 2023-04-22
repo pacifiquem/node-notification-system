@@ -1,39 +1,81 @@
+/* Style the body */
 body {
-    font-family: sans-serif;
-    margin: 0;
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
   }
   
-  h1 {
-    text-align: center;
-  }
-  
-  #board {
-    width: 300px;
+  /* Style the table */
+  table {
+    border-collapse: collapse;
     margin: 0 auto;
   }
   
-  .cell {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
+  /* Style the cells */
+  td {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    font-size: 32px;
     cursor: pointer;
   }
   
-  .cell:hover {
-    background-color: lightgray;
+  /* Style the cells when hovered over */
+  td:hover {
+    background-color: #eee;
   }
   
-  .cell.x {
-    background-color: red;
+  /* Style the cells when clicked */
+  td.clicked {
+    background-color: #f7f7f7;
+    cursor: default;
   }
   
-  .cell.o {
-    background-color: blue;
+  /* Style the cells with X */
+  td.x {
+    color: #c0392b;
   }
   
-  #reset {
-    margin-top: 10px;
-    background-color: green;
-    color: white;
+  /* Style the cells with O */
+  td.o {
+    color: #2980b9;
+  }
+  
+  /* Style the winner message */
+  #winner {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    color: #2980b9;
+  }
+  
+  /* Style the tie message */
+  #tie {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    color: #c0392b;
+  }
+  
+  /* Style the reset button */
+  button {
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2980b9;
+    color: #fff;
     cursor: pointer;
-  }  
+    margin-top: 20px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Style the reset button when hovered over */
+  button:hover {
+    background-color: #2c3e50;
+  }
+  
