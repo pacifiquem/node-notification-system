@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+mongoose.set('strictQuery', true);
 
 // connect to MongoDB
-mongoose.connect("mongodb://localhost/notification_system", {
+mongoose.connect("mongodb://127.0.0.1:27017/notification_system", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -36,5 +37,7 @@ const postSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 const Post = mongoose.model("Post", postSchema);
+
+console.log("connected to mongo db");
 
 module.exports = { User, Post };
