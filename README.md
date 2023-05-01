@@ -1,3 +1,3 @@
-# tiktaktoe
+## Node.js Notificatoin System
 
-Play titaktoe built using HTML, Javascript and CSS #enjoy !!!!
+This is a  Node.js notification system repo.
